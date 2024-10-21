@@ -2,8 +2,8 @@ use std::fs::File;
 use std::io::Read;
 // use std::mem;
 
-pub const DEFAULT_FILE: &str = r"C:\Users\springxdam\Forge\senile\---\meso_lv\linkedin_job_worker_matcher\data\emails.csv";
- 
+pub const PLACEHOLDER_FILE: &str = r"./placeholder.csv";
+
 fn open_file(path: &str) -> File {
     let f = File::open(path);
     match f {
@@ -50,30 +50,34 @@ fn break_line_and_sort(mut line: String) -> Vec<String> {
     // println!("{}", line);
     let sorter = String::from(&line[..]);
     let mut dbl: Vec<String> = Vec::new();
-    while let (Some(s), Some(e)) = (line.find(",\""), line.find("\","))
-        && s < e
-    {
-        dbl.push(String::from(&line[s + 2..e]));
-        line = line.replacen(&line[s..e+2], ",", 1);
+    while let (Some(s), Some(e)) = (line.find(",\""), line.find("\",")) {
+        if s < e {
+            dbl.push(String::from(&line[s + 2..e]));
+            line = line.replacen(&line[s..e + 2], ",", 1);
+        }
     }
-    let mut sgl: Vec<String> = line.split(",").map(|s| s.to_string()).collect::<Vec<String>>();
+    let mut sgl: Vec<String> = line
+        .split(",")
+        .map(|s| s.to_string())
+        .collect::<Vec<String>>();
     let mut vals: Vec<(usize, String)> = Vec::with_capacity(dbl.len() + sgl.len());
     // println!("{:?}", dbl);
     // println!("{:?}", sgl);
     let mut all = sgl.clone();
-    sgl.iter().enumerate().map(|(i, s)| {
-        for val in &dbl {
-            let pat = s.to_string() + ",\"" + &val;
-            if let Some(_) = sorter.find(&pat) 
-            {
-                // println!("{}", &pat[..]);
-                // + diff of lens since the len of all changes making the i of s actually i + 1
-                // with every value added
-                all.insert(i + 1 + all.len() - sgl.len(), val.clone());
+    sgl.iter()
+        .enumerate()
+        .map(|(i, s)| {
+            for val in &dbl {
+                let pat = s.to_string() + ",\"" + &val;
+                if let Some(_) = sorter.find(&pat) {
+                    // println!("{}", &pat[..]);
+                    // + diff of lens since the len of all changes making the i of s actually i + 1
+                    // with every value added
+                    all.insert(i + 1 + all.len() - sgl.len(), val.clone());
+                }
             }
-        }
-
-    }).collect::<()>();
+        })
+        .collect::<()>();
     // println!("{:?}\n", all);
 
     all
@@ -132,7 +136,7 @@ impl StringUtils for &str {
     fn multi_split(&self, args: Vec<&str>) -> Vec<String> {
         let mut vec: Vec<&str> = self.split(args[0]).collect();
         // args[1..].iter().map(|a| {
-            // vec = vec.iter().map(|s| s.split(a).map(|ss| ss.to_string()).collect::<Vec<String>>()).collect::<Vec<String>>();
+        // vec = vec.iter().map(|s| s.split(a).map(|ss| ss.to_string()).collect::<Vec<String>>()).collect::<Vec<String>>();
         // });
         // println!("{:?}", vec);
         for arg in &args[1..] {
@@ -152,7 +156,7 @@ impl StringUtils for &str {
     //     let chs: Vec<char> = Vec::new();
     //     for (c, c1) in std::iter::zip(self.chars(), ori.chars()) {
     //         if c != c1 {
-    //             
+    //
     //         }
     //     }
     //
