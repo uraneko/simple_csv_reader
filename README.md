@@ -18,6 +18,9 @@ As the name says, this is a simple csv reader. All it does is take a csv file as
 > It's a bit slow for medium sized files (1000 rows and more). 
 > almost unusable for bigger files (10000+ rows), the files would open normally but the gui would be too laggy.
 
+### Support 
+Works on Linux, should work on both Windows and Apple systems.
+
 ## Features
 
 ✓ gui display: show the title and contents of the csv file in a gui table
