@@ -1906,14 +1906,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49"
 
 [[package]]
-name = "scr"
-version = "0.1.0"
-dependencies = [
- "iced",
- "unicode-segmentation",
-]
-
-[[package]]
 name = "sctk-adwaita"
 version = "0.5.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1931,6 +1923,14 @@ name = "simd-adler32"
 version = "0.3.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d66dc143e6b11c1eddc06d5c423cfc97062865baf299914ab64caa38182078fe"
+
+[[package]]
+name = "simple_csv_reader"
+version = "0.1.0"
+dependencies = [
+ "iced",
+ "unicode-segmentation",
+]
 
 [[package]]
 name = "siphasher"

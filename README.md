@@ -24,6 +24,11 @@ As the name says, this is a simple csv reader. All it does is take a csv file as
 
 ✓ copy: you can copy the contents from table cells into the clipboard
 
+### Screenshots 
+![ss1](ss1.png)
+![ss2](ss2.png)
+![ss3](ss3.png)
+
 ### Installation
 
 ```bash
