@@ -15,8 +15,8 @@
 As the name says, this is a simple csv reader. All it does is take a csv file as a command argument and parse its contents into a table gui. 
 
 > [!NOTE] 
-> It's a bit slow for big files (1000 rows and more). 
-> almost unusable for much bigger files (10000), the files would open normally but the gui would be too laggy.
+> It's a bit slow for medium sized files (1000 rows and more). 
+> almost unusable for bigger files (10000+ rows), the files would open normally but the gui would be too laggy.
 
 ## Features
 
